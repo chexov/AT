@@ -91,9 +91,9 @@ public class StartPageTest {
 		driver.get("http://live4.io/");
 		WebElement googlePlayButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("app__appstore")));
 		googlePlayButton.click();
-		String titleGP = driver.getTitle();
-		System.out.println(titleGP);
+		String titleAS = driver.getTitle();
+		System.out.println(titleAS);
 		
-		Assert.assertTrue("FAILED: link to AppStore is ok", titleGP.contentEquals("LIVE4 GoPro Ñ Live LIVE on the App Store on iTunes"));
+		Assert.assertTrue("FAILED: link to AppStore is ok", titleAS.contentEquals("LIVE4 GoPro Ñ Live LIVE on the App Store on iTunes"));
 	}
 }
