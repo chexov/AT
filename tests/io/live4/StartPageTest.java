@@ -3,11 +3,12 @@ package io.live4;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -29,9 +30,14 @@ public class StartPageTest {
 		driver.quit();
 	}
 	
+	@Rule public TestName name = new TestName();
+	
 	@Test
 	//test 'Explore' menu button
 	public void testExploreMenuLink() throws InterruptedException{
+		
+		System.out.println(name.getMethodName());
+		
 		driver.get(url);
         WebElement exploreLink = driver.findElement(By.linkText("Explore"));
         Thread.sleep(2000);
@@ -44,6 +50,9 @@ public class StartPageTest {
 	@Test
 	//test 'Map' menu button
 	public void testMapMenuLink(){
+		
+		System.out.println(name.getMethodName());
+		
 		driver.get(url);
 		WebElement mapLink = driver.findElement(By.linkText("Map"));
 		mapLink.click();
@@ -55,6 +64,9 @@ public class StartPageTest {
 	@Test
 	//test 'Quick Start' menu button
 	public void testSrartMenuLink(){
+		
+		System.out.println(name.getMethodName());
+		
 		driver.get(url);
 		WebElement quickStartLink = driver.findElement(By.linkText("Quick Start"));
 		quickStartLink.click();
@@ -67,6 +79,9 @@ public class StartPageTest {
 	@Test
 	//test "Explore LIVE4" button
 	public void testExploreLive4Button(){
+		
+		System.out.println(name.getMethodName());
+		
 		driver.get(url);		
 		WebElement bigRedButton = driver.findElement(By.className("lives__more"));
 		bigRedButton.click();
@@ -78,6 +93,9 @@ public class StartPageTest {
 	@Test
 	//test link to GooglePlay
 	public void testLinkToGP(){
+		
+		System.out.println(name.getMethodName());
+		
 		driver.get(url);
 		WebElement googlePlayButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("app__googleplay")));
 		googlePlayButton.click();
@@ -90,6 +108,9 @@ public class StartPageTest {
 	@Test
 	//test link to AppStore
 	public void testLinkToAS() throws InterruptedException{
+		
+		System.out.println(name.getMethodName());
+		
 		driver.get(url);
 		WebElement googlePlayButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("app__appstore")));
 		googlePlayButton.click();
