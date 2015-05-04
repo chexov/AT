@@ -1,17 +1,19 @@
 	package io.live4;
 
 	import java.util.ArrayList;
-	import java.util.List;
+import java.util.List;
 
 	import org.junit.After;
-	import org.junit.Assert;
-	import org.junit.Before;
-	import org.junit.Test;
-	import org.openqa.selenium.By;
-	import org.openqa.selenium.WebElement;
-	import org.openqa.selenium.chrome.ChromeDriver;
-	import org.openqa.selenium.support.ui.ExpectedConditions;
-	import org.openqa.selenium.support.ui.WebDriverWait;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TestName;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 	public class ExplorePageTest {
 
@@ -37,9 +39,14 @@
 				driver.quit();
 			}
 			
+			@Rule public TestName name = new TestName();
+			
 			@Test
 			//test link to the main page
 			public void testLinkToMain() throws InterruptedException{
+				
+				System.out.println(name.getMethodName());
+				
 				driver.get(url);
 				WebElement label = pause.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("svg")));
 				label.click();
@@ -52,6 +59,9 @@
 			@Test
 			//test Map link
 			public void testMapMenuLink(){
+				
+				System.out.println(name.getMethodName());
+				
 				driver.get(url);
 				WebElement mapLink = driver.findElement(By.linkText("Map"));
 				mapLink.click();
@@ -63,6 +73,9 @@
 			@Test
 			//test Quick Start link
 			public void testSrartMenuLink(){
+				
+				System.out.println(name.getMethodName());
+				
 				driver.get(url);
 				WebElement quickStartLink = driver.findElement(By.linkText("Quick Start"));
 				quickStartLink.click();
@@ -74,6 +87,9 @@
 			@Test
 			//test AppStore button
 			public void testAppStoreButton() throws InterruptedException{
+				
+				System.out.println(name.getMethodName());
+				
 				driver.get(url);
 				WebElement appStoreButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("app_store_btn")));
 				
@@ -91,8 +107,11 @@
 			}
 			
 			@Test
-			//test AppStore button
+			//test GooglePlay button
 			public void testGooglePlayButton() throws InterruptedException{
+				
+				System.out.println(name.getMethodName());
+				
 				driver.get(url);
 				WebElement googlePlayButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("google_play_btn")));
 				
@@ -112,6 +131,9 @@
 			@Test
 			//test ShowMore button
 			public void testShowMore() throws InterruptedException{
+				
+				System.out.println(name.getMethodName());
+				
 				driver.get(url);
 				int numberVideosBefore = driver.findElementsByClassName("poster").size();
 				
@@ -126,6 +148,9 @@
 			@Test
 			//test "Link to this video" 
 			public void testLinkTTV() {
+				
+				System.out.println(name.getMethodName());
+				
 				driver.get(url);
 
 				WebElement linkTTV = pause.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Link")));
@@ -139,6 +164,9 @@
 			@Test
 			//test GooglePlay button within player body
 			public void testGPLink() throws InterruptedException {
+				
+				System.out.println(name.getMethodName());
+				
 				driver.get(url+"/1409429809379240/");
 
 				WebElement playButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("poster")));
@@ -160,6 +188,9 @@
 			@Test
 			//test AppStore button within player body
 			public void testASLink() throws InterruptedException {
+				
+				System.out.println(name.getMethodName());
+				
 				driver.get(url+"/1409429809379240/");
 
 				WebElement playButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("poster")));
@@ -181,6 +212,9 @@
 			@Test
 			//testing map appearance for a particular video
 			public void testShowMap() throws InterruptedException{
+				
+				System.out.println(name.getMethodName());
+				
 				driver.get(url+"/1409429809379240/");
 				
 				
@@ -192,9 +226,3 @@
 			}
 			
 		}
-
-
-
-
-
-

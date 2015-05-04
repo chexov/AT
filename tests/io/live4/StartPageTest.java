@@ -1,5 +1,8 @@
 package io.live4;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -91,32 +94,40 @@ public class StartPageTest {
 	}
 	
 	@Test
-	//test link to GooglePlay
-	public void testLinkToGP(){
-		
-		System.out.println(name.getMethodName());
-		
+	//test AppStore button
+	public void testAppStoreButton() throws InterruptedException{
 		driver.get(url);
-		WebElement googlePlayButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("app__googleplay")));
-		googlePlayButton.click();
-		String titleGP = driver.getTitle();
-		System.out.println(titleGP);
+		WebElement appStoreButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("app_store_btn")));
 		
-		Assert.assertTrue("FAILED: link to GooglePlay is ok", titleGP.contentEquals("LIVE4 GoPro - Android Apps on Google Play"));
-	}
-	
-	@Test
-	//test link to AppStore
-	public void testLinkToAS() throws InterruptedException{
+		appStoreButton.click();
+
+		List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
+		driver.switchTo().window(browserTabs.get(1));
 		
-		System.out.println(name.getMethodName());
+		Thread.sleep(2000);
 		
-		driver.get(url);
-		WebElement googlePlayButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("app__appstore")));
-		googlePlayButton.click();
 		String titleAS = driver.getTitle();
 		System.out.println(titleAS);
 		
-		Assert.assertTrue("FAILED: link to AppStore is ok", titleAS.contentEquals("LIVE4 GoPro Ñ Live LIVE on the App Store on iTunes"));
+		Assert.assertTrue("Failure: link is ok", titleAS.contentEquals("LIVE4 GoPro Ñ Live LIVE on the App Store on iTunes"));
+	}
+	
+	@Test
+	//test GooglePlay button
+	public void testGooglePlayButton() throws InterruptedException{
+		driver.get(url);
+		WebElement googlePlayButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("google_play_btn")));
+		
+		googlePlayButton.click();
+
+		List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
+		driver.switchTo().window(browserTabs.get(1));
+		
+		Thread.sleep(2000);
+		
+		String titleGP = driver.getTitle();
+		System.out.println(titleGP);
+		
+		Assert.assertTrue("Failure: link is ok", titleGP.contentEquals("LIVE4 GoPro - Android Apps on Google Play"));
 	}
 }
