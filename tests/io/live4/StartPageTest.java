@@ -86,7 +86,7 @@ public class StartPageTest {
 		System.out.println(name.getMethodName());
 		
 		driver.get(url);		
-		WebElement bigRedButton = driver.findElement(By.className("lives__more"));
+		WebElement bigRedButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("lives__more")));
 		bigRedButton.click();
 		WebElement player = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("poster")));
 		
@@ -97,7 +97,7 @@ public class StartPageTest {
 	//test AppStore button
 	public void testAppStoreButton() throws InterruptedException{
 		driver.get(url);
-		WebElement appStoreButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("app_store_btn")));
+		WebElement appStoreButton = pause.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bottompart .app__appstore")));
 		
 		appStoreButton.click();
 
@@ -116,7 +116,7 @@ public class StartPageTest {
 	//test GooglePlay button
 	public void testGooglePlayButton() throws InterruptedException{
 		driver.get(url);
-		WebElement googlePlayButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("google_play_btn")));
+		WebElement googlePlayButton = pause.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bottompart .app__googleplay")));
 		
 		googlePlayButton.click();
 
