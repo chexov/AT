@@ -1,15 +1,20 @@
 	package io.live4;
 
-	import java.util.ArrayList;
+	import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-	import org.junit.After;
+import org.apache.commons.io.FileUtils;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -43,7 +48,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 			
 			@Test
 			//test link to the main page
-			public void testLinkToMain() throws InterruptedException{
+			public void testLinkToMain() throws InterruptedException, IOException{
 				
 				System.out.println(name.getMethodName());
 				
@@ -52,13 +57,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 				label.click();
 				WebElement liveLive = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("mainpage")));
 				String checkLiveLive = liveLive.getText();
+				
+		        File sShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		        FileUtils.copyFile(sShot, new File("/tmp/clickOnLogo.png"));
 
 				Assert.assertTrue("FAILED: link to the main page is ok", checkLiveLive.equals("Live LIVE"));
 			}
 			
 			@Test
 			//test Map link
-			public void testMapMenuLink(){
+			public void testMapMenuLink() throws IOException, InterruptedException{
 				
 				System.out.println(name.getMethodName());
 				
@@ -67,12 +75,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 				mapLink.click();
 				WebElement map = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("gm-style")));
 				
+				Thread.sleep(1000);
+				
+		        File sShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		        FileUtils.copyFile(sShot, new File("/tmp/clickOnMapMenuButton_explore.png"));
+				
 				Assert.assertTrue("FAILED: 'Map' link is ok", map.isDisplayed());
 			}
 			
 			@Test
 			//test Quick Start link
-			public void testSrartMenuLink(){
+			public void testSrartMenuLink() throws IOException{
 				
 				System.out.println(name.getMethodName());
 				
@@ -81,12 +94,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 				quickStartLink.click();
 				WebElement fiveSteps = pause.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h1")));
 				
+		        File sShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		        FileUtils.copyFile(sShot, new File("/tmp/clickOnQSMenuButton_explore.png"));
+				
 				Assert.assertTrue("FAILED: 'Quick start' link is ok", fiveSteps.getText().equals("5 steps to start streaming LIVE"));
 			}
 			
 			@Test
 			//test AppStore button
-			public void testAppStoreButton() throws InterruptedException{
+			public void testAppStoreButton() throws InterruptedException, IOException{
 				
 				System.out.println(name.getMethodName());
 				
@@ -101,14 +117,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 				Thread.sleep(2000);
 				
 				String titleAS = driver.getTitle();
-				System.out.println(titleAS);
+
+		        File sShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		        FileUtils.copyFile(sShot, new File("/tmp/testAppStoreButton_explore.png"));
 				
 				Assert.assertTrue("Failure: link is ok", titleAS.contentEquals("LIVE4 GoPro Ñ Live LIVE on the App Store on iTunes"));
 			}
 			
 			@Test
 			//test GooglePlay button
-			public void testGooglePlayButton() throws InterruptedException{
+			public void testGooglePlayButton() throws InterruptedException, IOException{
 				
 				System.out.println(name.getMethodName());
 				
@@ -123,7 +141,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 				Thread.sleep(2000);
 				
 				String titleGP = driver.getTitle();
-				System.out.println(titleGP);
+
+		        File sShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		        FileUtils.copyFile(sShot, new File("/tmp/testGooglePlayButton_explore.png"));
 				
 				Assert.assertTrue("Failure: link is ok", titleGP.contentEquals("LIVE4 GoPro - Android Apps on Google Play"));
 			}
@@ -147,7 +167,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 			
 			@Test
 			//test "Link to this video" 
-			public void testLinkTTV() {
+			public void testLinkTTV() throws IOException, InterruptedException {
 				
 				System.out.println(name.getMethodName());
 				
@@ -158,12 +178,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 				linkTTV.click();
 				String linkB = driver.getCurrentUrl();
 				
+				Thread.sleep(2000);
+				
+		        File sShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		        FileUtils.copyFile(sShot, new File("/tmp/testLinkToTheVideo_explore.png"));
+				
 				Assert.assertTrue("FAILURE: link to the current video is ok", linkA.equals(linkB));
 			}
 			
 			@Test
 			//test GooglePlay button within player body
-			public void testGPLink() throws InterruptedException {
+			public void testGPLink() throws InterruptedException, IOException {
 				
 				System.out.println(name.getMethodName());
 				
@@ -180,14 +205,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 				Thread.sleep(2000);
 				
 				String titleGP = driver.getTitle();
-				System.out.println(titleGP);
+
+		        File sShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		        FileUtils.copyFile(sShot, new File("/tmp/testGooglePlayButton_withinPlayer.png"));
 				
 				Assert.assertTrue("Failure: link is ok", titleGP.contentEquals("LIVE4 GoPro - Android Apps on Google Play"));
 			}
 			
 			@Test
 			//test AppStore button within player body
-			public void testASLink() throws InterruptedException {
+			public void testASLink() throws InterruptedException, IOException {
 				
 				System.out.println(name.getMethodName());
 				
@@ -204,14 +231,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 				Thread.sleep(2000);
 				
 				String titleGP = driver.getTitle();
-				System.out.println(titleGP);
+
+		        File sShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		        FileUtils.copyFile(sShot, new File("/tmp/testAppStoreButton_withinPlayer.png"));
 				
 				Assert.assertTrue("Failure: link is ok", titleGP.contentEquals("LIVE4 GoPro Ñ Live LIVE on the App Store on iTunes"));
 			}
 			
 			@Test
 			//testing map appearance for a particular video
-			public void testShowMap() throws InterruptedException{
+			public void testShowMap() throws InterruptedException, IOException{
 				
 				System.out.println(name.getMethodName());
 				
@@ -221,6 +250,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 				WebElement playButton = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("poster")));
 				playButton.click();
 				WebElement map = pause.until(ExpectedConditions.visibilityOfElementLocated(By.className("gm-style")));
+				
+		        File sShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		        FileUtils.copyFile(sShot, new File("/tmp/testShowMap.png"));
 				
 				Assert.assertTrue("FAILURE: map is ok", map.isDisplayed());
 			}
