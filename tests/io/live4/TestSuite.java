@@ -6,7 +6,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 	StartPageTest.class,
-	ExplorePageTest.class
+	ExplorePageTest.class,
+	TestStreaming.class
 })
 
 public class TestSuite{
